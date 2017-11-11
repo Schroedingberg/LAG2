@@ -1,0 +1,312 @@
+#+LATEX_HEADER: \DeclareMathOperator{\ker}{Kern}
+#+LATEX_HEADER: \DeclareMathOperator{\id}{id}
+
+* Ringe & Polynomringe
+  
+** Definition: Ring
+   Ein Ring sei eine Menge mit zwei Verknüpfungen \(+: R\times R \rightarrow R\) und \(\cdot: R\times R \rightarrow R \), sodass gilt:
+   1) R ist bzgl. + eine Abelsche Gruppe
+   2) R ist bzgl. \cdot eine Halbgruppe
+   3) + und \cdot sind vermöge der Distributivgesetze miteinander verschränkt.
+      \(a(b+c) = ab+ac \land (a+b)c = ac+bc \forall a,b,c \in \mathbb{R}\)
+
+      
+
+   Ist die Multiplikation kommutativ, so heißt R kommutativer
+   Ring. Enthält R ein multiplikativ neutrales Element 1, so heißt R
+   Ring mit Eins.
+
+** Bemerkung
+   In jedem Ring R gilt \(0\cdot a = a \cdot 0 = 0 \forall a \in R\)
+   denn: \(0a = (0+0)a = 0a+0a \overset{-0a}{\Rightarrow} 0 = 0a\)
+
+** Definition: Ideal
+   Sei R ein Ring und I \subseteq R. Wir nennen I ein Ideal falls
+   gilt:
+   1) I ist bzgl. + eine Untergruppe der additiven Gruppe von R
+   2) _Magnetische Eigenschaft_: Für alle a \in I und r \in R gilt a\cdot r, r\cdot a \in I (Zweiseitiges Ideal)
+
+
+
+** Beispiel
+   Ist R ein kommutativer Ring, so ist für jedes feste a\in R die Menge
+   \(a\cdot R = \left{a\cdot r | r\in R   \right}\) ein Ideal in R (sogenanntes Hauptideal in R).
+   
+   Sind I,J Ideale in R, so auch \(I+J = \left{a+b| a\in I, b\in J    \right}\) (z.B. (a+b)r = ar + br)
+   Ist \(\Omega_{0}\subseteq \Omega, so ist {f: \Omega \rightarrow \mathbb{Z} | f(\omega)  = 0 \forall \omega in \Omega_{0}}\) ein Ideal in Abb(\Omega, \mathbb{Z}).
+
+** Definition: Ringhomomorphismus
+   Eine Abbildung \phi: R\rightarrow S zwischen den Ringen R und S heiße ein Ringhomomorphismus, falls für alle a,b \in R gilt:
+   \(\phi(a+b) = \phi(a)  + \phi(b)  \) und \(\phi(a\cdot b) = \phi(a) \cdot \phi(b)\forall a,b \in R\).
+   Sind R,S _Ringe mit Eins_, so sei zusätzlich \phi(1) = 1.
+   Ferner sei \(\text{Kern}\phi =  {a\in R | \phi(a) = 0}\)
+
+** Lemma
+   In obiger Situation ist Kern \phi ein Ideal in R
+*** Beweis
+    1) Kern\phi ist Untergruppe der additiven Gruppe von R (Wie bei Vektorräumen)
+    2) Sei a\in Kern \phi , r\in R. Dann \phi(ar)= \phi(a)\cdot \phi(r) = 0\cdot r = 0 \square
+** Definition & Bemerkung: Faktorring
+   Sei I ein festes Ideal im Ring R. Dann ist eine Äquivalenzrelation \(\equiv\) auf R gegeben durch:
+   \(a\equiv b \Leftrightarrow b-a \in I (a,b\in R)\)
+   Funktioniert, da I Untergrupe von R^+
+   z.B. transitiv: \(a\equiv b \land b\equiv c  \Leftrightarrow b-a \in I \land c-b \in I \Rightarrow (c-b)+(b-a) = c-a \in I \Rightarrow a\equiv c\) 
+   wegen Gruppenstruktur von I
+
+   Die Äquivalenzklassen haben die Form \([a] = I+a = \left{u+a| u\in I\right}\). Insbesondere ist R die disjunkte Vereinigung dieser Äquivalenzklassen.
+   Wir bilden den _Faktorring_ \(R/I = \left{[a]| a\in R\right}\) bzgl. folgender Verknüpfungen:
+   \((I+a)  + (I+b ) = I+ (a+b)\) und \((I+a) \cdot (I+b) = I +(ab) \forall a, b\in R\).
+** Lemma
+   Diese Verknüpfungen sind wohldefiniert.
+*** Beweis
+    Addition wie bei Vektorräumen!
+    Multiplikation: Seien \(I+a = I+\overset{\wedge}{a}\) und \(I+b = I+ \overset{\wedge}{b}\) also \(\overset{\wedge}{a}-a, \overset{\wedge}{b} \in I\) 
+    \(\Rightarrow \overset{\wedge}{a}\overset{\wedge}{b}-ab = \overset{\wedge}{a}\overset{\wedge}{b} -\overset{\wedge}{a}b + \overset{\wedge}{a}b - ab = 
+    \overset{\wedge}{a}(\overset{\wedge}{b} - b) + (\overset{\wedge}{a} - a)b \in I\) wegen magnetischer Eigenschaft.
+** Folgerung 
+   In obiger Situation ist ein Ringepimorphismus \(\nu : R \rightarrow R/I\) gegeben durch \(\nu(\a) = I+a \forall a\in R\) (kanonischer Epimorphismus).
+   Dabei ist Kern\nu = I. Insbesondere sind _Ideale_ genau die _Kerne der Homomorphismen_ in der Welt der _Ringe_. 
+** Homomorphiesatz
+   \(\phi: R\rightarrow S\) sei ein Ringhomomorphismus. \nu bezeichne den kanonischen Epimorphismus R \rightarrow R/Kern\phi .
+   Dann existiert ein Ringmonomorphismus \(\mu: R/Kern\phi \rightarrow S\) mit \(\mu(I+a) = \phi(a)\forall a\in R\) . Insbesondere ist R/Kern\phi isomorph zu
+   Bild\phi
+** Motivation
+   1) Wir betrachten die menge \mathbb{P}(\mathbb{R}) aller Polynomfunktionen von \mathbb{R} in sich, dh.
+      alle \(f: \mathbb{R} \rightarrow \mathbb{R}\) zu denen \(a_0, ..., a_n \in \mathbb{R}\) existieren mit \(f(x) = \sum\limits_{k=0}^{n} a_{k}x^k \forall x \in \mathbb{R}\)
+      In \\mathbb{P}(\\mathbb{R}) gilt das Prinzip des _Koeffizientenvergleichs_, dh. ist \(\sum\limits_{k=0}^{n} a_{k}x^{k} = \sum\limits_{k=0}^{m} b_k x^{k} \forall x\in \mathbb{R} \) so folgt \(a_k = b_k \forall  k\leq \min\{m,n\}\) und
+      die _restlichen Koeffizienten_ sind = 0.
+      _Beweis:_ o.E. sei n = n (evtl. Koeffizienten 0 auf einer Seite ergänzen)
+      n-fache Ableitung: n!\cdot a_n = n! \cdot b_n \Rightarrow a_n = b_n
+      und \(\sum\limits_{k = 0}^{n-1}a_kx^k = \sum\limits_{k = 0}^{n-1}b_kx^k\). Induktion nach $n$ liefert \( a_k = b_k \forall k \leq n-1\)
+   2) Nun sei \mathbb{K} = {0,1} Körper mit 2 Elementen. Hier gilt x^2 = x \forall x \in \mathbb{K}. Somit ist Prinzip des Koeffizientenvergleichs verletzt
+      für die Polynomfunktionen \mathbb{K} \rightarrow \mathbb{K}.
+** Definition
+   R sei ein beliebiger Ring. Wir betrachten die Menge \mathbb{F}_0(R) aller Folgen \((a_k)_{k\in \mathbb{N}}\) mit a_k \in \mathbb{R} \forall k\in \mathbb{N},
+   aber a_k = 0 für fast alle k\in \mathbb{N}. Anstatt \((a_k)_{k\in \mathbb{N}}\) schreiben wir \(\sum\limits_{k = 0}^{n}a_kx^k\) sofern \(a_k = 0 \forall k>n\).
+   Wir nennen \(\sum\limits_{k = 0}^{n}a_kx^k \) ein Polynom mit Koeffizienten aus R und der Variablen aus x.
+   Mit R[x] bezeichnen wir die Menge aller solchen Polynome.
+   _Beachte_: In \mathbb{F}_0(\mathbb{R}) bzw. R[x] gilt das Prinzip des Koeffizientenvergleichs. (sogar für R = {0,1}).
+   Die punktweise Addition von Folgen wird zu einer Addition auf R[x].
+   Wir definieren eine Multiplikation auf R[x] vermöge:
+   \(\left(\sum\limits_{k = 0}^{n} a_k x^k\right)\left(\sum\limits_{l = 0}^{m} b_l x^{l}\right) = \sum\limits_{s=0}^{n+m}\left(\sum\limits_{k+l = s} a_k b_l \right) x^s  \forall a_k, b_l \in R\)
+** Satz
+   Bzgl. dieser beiden beiden Verknüpfungen wird R[x] ein Ring. Ist R kommutativ, so auch R[x]. Hat R eine Eins so auch R[x].
+*** Beweis
+    Bzgl. der Verknüpfungen verhält sich die Variable wir jedes x-beliebige Element aus R. Daher erfüllt R[x] die Ringaxiome.
+** Definition
+   Es sei \mathbb{K} ein Körper. Wir nennen A eine \mathbb{K}-Algebra, falls:
+   1) A ist ein Vektorraum
+   2) A ist ein Ring
+   3) In beiden Fällen ist die Addition dieselbe
+   4) Skalarmultiplikation und Ringmultiplikation sind wie folgt miteinander verträglich:
+      \(c(ab) = (ca)b = a(cb) \forall c\in \mathbb{K}, a,b \in A   \)
+** Beispiel
+   für \mathbb{K}-Algebra (nicht abgeschrieben)
+** Bemerkung
+   Es sei A eine \mathbb{K}-Algebra und a\in A fest gewählt. Wir definieren den Einsetz-Homomorphismus
+   \(\epsilon_{a}: \mathbb{K}[x] \rightarrow A\) vermöge Einsetze von a:
+   \(\epsilon_{a}\left(\sum\limits_{k = 0}^{n}c_kx^k\right) = \sum\limits_{k = 0}^{n} c_ka^k \forall c_k \in \mathbb{K}\)
+   Dies ist ein \mathbb{K}-Algebren-Homomorphismus. Ist f\in \mathbb{K}[x], so schreiben wir f(a) anstelle von \epsilon_a(f).
+** Beispiel
+   Die Menge \mathbb{P}(\mathbb{K}) aller Polynomfunktionen \mathbb{K} \rightarrow \mathbb{K} ist eine \mathbb{K}-Algebra bzgl. der punktweisen Operationen.
+   \(\epsilon_a \left(\sum\limits_{k = 0}^{n}c_k x^k + \sum\limits_{k = 0}^n d_{k} x^k\right) = \epsilon_{a}\left( \sum\limits_{k = 0}^{n}(c_k+ d_k)x^k\right)
+   = \sum\limits_{k = 0}^{n}(c_k+d_k)a^k=\sum\limits_{k = 0}^{n}c_ka^k+\sum\limits_{k = 0}^{n}d_ka^k = \epsilon_a \left(\sum\limits_{k = 0}^{n}c_kx^k\right)+ \epsilon_a\left(\sum\limits_{k = 0}^{n}d_kx^k\right)\) 
+
+
+
+   Betrachte den Einsetz-Homomorphismus \epsilon_{id}: \mathbb{K}[x] \rightarrow \mathbb{P}(\mathbb{K})
+   \(\epsilon_{id}\left(\sum\limits_{k = 0}^{n} c_kx^k\right) = \sum\limits_{k = 0}^{n} c_k(id)^k = f(id)
+   \)
+   Offenbar ist \((f(id))(a) = \sum\limits_{k = 0}^{n}c_k(id(a))^k = \sum\limits_{k = 0}^{n}c_ka^k
+   \) dh \epsilon_id ordnet jedem f \in \mathbb{K}[x] genau diejenige Polynomfunktion zu, deren Abbildungsvorschrift durch f gegeben ist. Nach 1.12
+   ist \epsilon_{id} bijektiv für \mathbb{K} = \mathbb{R}, aber nicht injektiv für \mathbb{K} = {0,1}.
+** Definition
+   Ein Ring R heiße _nullteilerfrei_, falls für alle a,b\in R gilt: Wenn a\cdot b = 0 ist, so muss a = 0 oder b = 0 sein.
+** Beispiel
+   1) Jeder Körper \mathbb{K} ist nullteilerfrei:
+      Seien a,b\in \mathbb{K} mit ab = 0.
+      Ist b=0, so fertig. Ist b \neq 0, so a = abb^{-1} = 0b^{-1} = 0
+   2) \mathbb{K}^{2\times 2} ist nicht nullteilerfrei.
+** Definition
+   Sei \(f = \sum\limits_{k = 0}^{n}c_kx^k \in R[x], c_n \neq 0\). Dann setzen wir grad f = n. Für f = 0 sei grad f = -\infty
+** Satz: Gradformel
+   Sei R Ring. Stets gilt
+   \(grad(f\cdot g) \leq grad(f) + grad(g) \forall f,g \in R\)
+   Ist R nullteilerfrei, so gilt hier stets die Gleichheit.
+*** Beweis
+    Höchstkoeffizient von f\cdot g ist das Produkt der Höchstkoeffizienten von f und g.
+** Folgerung
+   Ist \mathbb{K} ein Körper, so ist \mathbb{K}[x] ein nullteilerfreier kommutativer Ring mit eins und \mathbb{K}\setminus {0}
+   ("konstante Polynome \neq 0") genau die Menge aller invertierbaren Elemente in \mathbb{K}[x].
+*** Beweis
+    1) Sei f\cdot g = 0 für gewisse f,g \in \mathbb{K}[x].
+       Dann -\infty = grad(f\cdot g) = grad f + grad g
+       \Rightarrow -\infty = grad f oder -\infty = grad g \Rightarrow f = 0 oder g = 0
+    2) Sei f\cdot g = 1 für gewisse f,g \in \mathbb{K}[x].
+       Dann: 0 = grad(f\cdot g) = grad f+grad g \Rightarrow grad f = 0 = grad g und f,g \in \mathbb{K}\setminus {0}
+** Definition
+   Sei \mathbb{K} ein Körper und f \in \mathbb{K}[x]. Wir nenn a\in \mathbb{K} eine _Nullstelle_ von f, wenn  f(a) = 0.
+** Satz
+   Für f\in \mathbb{K}[x] und a \in \mathbb{K} sind gleichwertig:
+   1) f(a) = 0
+   2) f = (x-a)g für ein g \in \mathbb{K}[x]
+     
+
+   Mit anderen Worten: Für Einsetzhomomorphismus \epsilon_a : \mathbb{K}[x] \rightarrow \mathbb{K} ist Kern \epsilon_a = (x-a)\cdot \mathbb{K}[x] = {(x-a)\cdot g| g \in \mathbb{K}[x]}.
+*** Beweis 
+    "\overset": Klar: (x-a)\in Kern \epsilon_{a} und (x-a)\cdot \mathbb{K}[x] \subseteq Kern\epsilon_a
+    "\subset": Sei umgekehrt f \in Kern\epsilon also f(a)=0
+    Sei \(\sum\limits_{k=0}^nc_kx^k = f\)
+    Nun: \(f = f-f(a) = \sum\limits_{k=0}^{n}c_kx^k - \sum\limits_{k=0}^{n}c_ka^k = \sum\limits_{k=0}^{n} c_k(x^{k}- a^k)\) mit
+    \(x^k - a^k = (x-a)(x^{k-1} + ax^{k-2} + a^2x^{k-3}+\cdots + a^{k-1}) \Rightarrow f \in (x-a)\cdot \mathbb{K}[x]\) \square 
+** Folgerung
+   Ist \mathbb{K} ein Körper und f\in \mathbb{K}[x] mit grad f = n, so hat f höchstens n paarweise verschiedene Nullstellen in \mathbb{K}.
+*** Beweis
+    Sind a_1,...,a_s \in \mathbb{K} paarweise verschiedene Nullstellen von f, so f(a_1) = 0 \Rightarrow f = (x-a_1)\cdot g
+
+    0 = f(a_2) = (a_2- a_1)\cdot g(a_2) \Rightarrow g(a_2) = 0 und g = (x-a_2)\cdot h für ein h \in \mathbb{K}[x] usw...
+    Schließlich: f = (x-a_1)(x-a_2)...(x-a_s)\cdot u für ein u \in \mathbb{K}[x] \overset{Gradformel}{\Rightarrow} n \geq s
+* Eigenwerte linearer Abbildungen und charakteristisches Polynom
+  Generalvoraussetzung: Stets sei V ein \mathbb{K}-VR
+** Definition
+   Sei \(\alpha \in \text{End}_{\mathbb{K}}(V) \). Wir nennen a\in \mathbb{K} einen _Eigenwert_ zu \alpha, falls \alpha(v) = a\cdot v für ein v\in V mit v \neq 0.
+   In diesem Fall nennen wir v einen Eigenvektor zum Eigenwert von \alpha.
+** Bemerkung
+   \(\alpha(v) = a\cdot v \Leftrightarrow \alpha(v) - a \id_{V}(v) = 0 \Leftrightarrow (\alpha - a\cdot id_{V}(v))(v) = 0 \Leftrightarrow v\in\ker(\alpha-a\id_{V}(v)) = \ker(a\cdot \id_V - \alpha) \)
+   Insbesondere ist \ker(\alpha - a \id_V) \neq 0 \Leftrightarrow a Eigenwert von \alpha
+   Wir nennen \ker(\alpha - a \id_V) daher den _Eigenraum_ zum Eigenwert a von \alpha.
+** Bemerkung
+   Sei \(A \in \mathbb{K}^{n\times n}\). Eine lineare Abbildung \alpha \in \text{End}_{\mathbb{K}}(\mathbb{K}^n) ist gegeben durch \alpha(v) = A\cdot v für
+   alle v\in \mathbb{K}^n. Wir verwenden daher die obigen Begriffe auch für Matrizen:
+   Ist Av = av für ein a \in \mathbb{K}, 0+v \in \mathbb{K}^n so v Eigenvektor zum Eigenwert a von A.
+   Eigenraum: \(\ker(A-aE) = \left\{v\in \mathbb{K}^{n}| (A-aE)v = 0\right\}\)
+** Definition
+   Es sei A\in \mathbb{K}^{n\times n}. Wir betrachten A als Matrix aus \mathbb{K}^{n\times n}. Dabei sei
+   \(\mathbb{K}(x) = \left\{\frac{f}{g}|f,g \in \mathbb{K}[x], g\neq 0 \right\}\) der Quotientenkörper von \mathbb{K}[x].
+   Wir bilden \(f_A = \det(xE-A) \in \mathbb{K}(x)\).
+   Nach Formeln für die Determinante ist f_1 \in \mathbb{K}[x] das sogenannte charakteristische Polynom zu A.
+** Bemerkung
+   Sei \(\alpha \in \text{End}_{\mathbb{K}}(V)\) wo \(\dim_{\mathbb{K}} V = n < \infty\)
+   1) Zu Basen B_1 und B_2 von V sei \(A = _{B_i}\alpha_{B_i}\)
+      Dann existiert \(_{B_{1}}\id_{B_2} =Y \in \mathbb(GL)(n,\mathbb{K})\) mit \(A_2 = Y^{-1}A_{1}Y\)
+      \Rightarrow \(f_{A_2} = \det(xE -A_2) = \det(xE-Y^{-1}A_1Y) = \det(Y^{-1}(xE-A_1)Y) = \det(Y^{-1})\cdot \det(xE-A_1)\cdot \det(Y) = \det(xE-A_1)\cdot\det(Y^{-1})\cdot\det(Y) = f_{A_{1}}\)
+      Daher darf f_\alpha = f_{A_1} das charakteristische Polynom zu \alpha genannt werden.
+      Also ist für endlichdimensionale Vektorräume das charakteristische Polynom unabhängig von der Wahl der Basis.
+   2) Die Nullstellen von f_\alpha sind genau die Eigenwerte von \alpha. Es gilt nämlich für a\in \mathbb{K}:
+      \(f_{\alpha}(a) = 0 \Leftrightarrow \det(aE-A) = 0 \Leftrightarrow aE -A \text{singulär} \Leftrightarrow a\cdot\id_{V} - \alpha nicht invertierbar \Leftrightarrow a\cdot \id_V -\alpha \text{nicht injektiv} \Leftrightarrow \ker(a\id_V-\alpha) \neq 0\)
+   3) Ist grad f_{\alpha} = s, so hat \alpha höchstens s verschiedene Eigenwerte, evtl. gibt es keine. Ist \mathbb{K} algebraisch abgeschlossen, so hat jedes
+      Polynom \in \mathbb{K}[x] eine Nullstelle und jedes \alpha \in \text{End}_{\mathbb{K}}(V) hat Eigenwerte.
+   4) Grad f_{\alpha} = n = dimV gilt stets und f_{\alpha} ist normiert.
+      (LEIBNIZ-Formel für Determinante)
+      Ferner hat f_{\alpha} den konstanten Term \(f_{\alpha}(0) = f_{A}(0) = \det(-A) = (-1)^n\det(A)\)
+** Beispiel
+   :PROPERTIES:
+   :ID:       223422f7-427c-44dc-b429-22a72c03fdbe
+   :CUSTOM_ID: nullstellen
+   :END:
+   1) A =
+     #+attr_latex: :mode math :environment matrix
+      | a | b |
+      | c | d |
+     A\in \mathbb{R}^{2\times 2}
+     \(f_A = \det(xE-A) = x^2 + 1\) hat keine reellen Nullstellen. \Rightarrow A hat keinen Eigenwert in \mathbb{R}. (Ersetze \mathbb{R} durch \mathbb{C}, dann schon)
+   2) Sei V der \mathbb{R}-VR aller unendlich oft differenzierbaren Abbildungen f. (bzgl. punktweiser Operationen). Sei \delta\in \text{End}_{\mathbb{K}}(V) das
+      Ableiten: \(\delta(f) = f'\forall f\in V\) Dann ist jedes \lambda \in \mathbb{R} Eigenwert von \delta, denn:
+      \(\delta(\exp(\lambda x) = \lambda\exp(\lambda x))\).
+      Ist W der \mathbb{R}-VR aller Polynomfunktionen f (über \mathbb{R}), so grad\delta(f) = gradf -1 \forall f\in W (beachte W isomorph zu \mathbb{R}[x])
+      \Rightarrow \delta_{|_W} hat keinen Eigenwert
+   3) Ist \(A = (a_{ij})\in \mathbb{K}^{n\times n}\) Dreiecksmatrix, so \(f_A = \product\limits_{i=1}^{n}(x-a_{ii})\)
+      Also sind die Diagonaleinträge a_{ii} genau die Eigenwerte von von A.
+** Satz
+   :PROPERTIES:
+   :CUSTOM_ID: 2.7
+   :END:
+   Sei \alpha in \text{End}_{\mathbb{K}}(V) und U ein \alpha-invarianter Unterraum. ( \(\alpha(u) \in U \forall u\in U\))
+   Dann ist \(f_{\alpha} = f_{\alpha_{|_{U}}} \cdot f_\alpha_{V/U}\)
+   mit \(\alpha_{V/U}: V/U \rightarrow V/U, ~~~~~\alpha_{V/U}(U+v)= U +\alpha(v)\forall v\in V \)
+*** Beweis
+    Wir ergänzen eine Basis B_U von U zu einer Basis B_V von V. Dann ist \(B_{V/U} = \left\{U+v| v\in B_{v}\setminus B_{U} \right\}\) eine Basis von \(V/U\).
+
+    \(_{B_V}\alpha_{B_V} = \begin{array}{c|c}
+    _{B_{U}}\alpha_{|_U_}_{B_{U}} & \huge{*}\\
+    \hline
+    \huge{0} && _{B_{V/U}}\alpha_{V/U}_{B_{V/U}}
+    \end{array}
+    \)
+    \(\Rightarrow f_\alpha = f_{_{B}\alpha_{B}} = \det(xE-_{B}\alpha_B) = \det(xE- _{B_U}\alpha_{|_U}_{B_U})\cdot \det(xE-_{B_{V/U}}\alpha_{V/U}_{B_{V/U}}) = f_{a_{|_U}}\cdot f_{\alpha_{V/U}}  \)
+** Satz
+***  Sei a \in \text{End}_{\mathbb{K}}(V) und dim V = n < \infty
+       Dann sind äquivalent:
+       1) \alpha ist _trigonalisierbar_ dh. es gibt eine Basis B von V, sodass _B\alpha_B Dreiecksmatrix ist
+       2) f_{\alpha} ist ein Produkt von Linearfaktoren aus \mathbb{K}[x]
+
+
+    
+
+    (Matrixversion)
+    Sei A\in \mathbb{K}^{n\times n}. Dann sind äquivalent:
+    1) A ist _trigonalisierbar_, dh es gibt X \in \mathbb{GL}(n,\mathbb{K}) sodass
+       \(X^{-1}AX\) Dreiecksmatrix ist
+    2) f_A ist ein Produkt von Linearfaktoren in \mathbb{K}[x]
+*** TODO Beweis
+    1)\Rightarrow 2) siehe  [[#nullstellen][Beispiel 3]]
+    2)\Rightarrow 1) Induktion nach n. Für n = 1 ist jede Matrix Dreiecksmatrix \rightarrow fertig.
+    Sei nun n > 1. Da f_\alpha in Linearfaktoren zerfällt ist f_\alpha(a) = 0 für ein a \in \mathbb{K}.
+    Also a Eigenwert zu \alpha und \alpha(u)  = a\cdot u für ein u \in V\setminus {0}.
+    Dann ist  U = <u> ein \alpha invarianter Unterraum von U.
+    Aus [[#2.7][Satz]] folgt f_\alpa = f_\alpha_{|_U} \cdot f_{\alpha_{V/U}} \Rightarrow f_{a_V/U} ist Produkt von Linearfaktoren.
+    Induktion liefert eine Basis B_{V/U} von V/U, sodass die Matrix zu \alpha bezüglich dieser Basis Dreiecksmatrix ist.
+    (Die Induktion fehlt hier noch)
+** Folgerung
+   Ist \alpha \in \text{End}_{\mathbb{K}}(V) und \(f_\alpha = \product\limits_{k=1}^n (x-a_k) \) so \(fg(\alpha) = \product\limits_{k=1}^n (x-g(a_k))\forall g\in \mathbb{K}[x]\) 
+*** Beweis
+    Aus Vorigem Satz \Rightarrow _B\alpha_B Dreiecksmatrix für geeignete Basis B. Diese hat Eigenwerte a_k als Diagonaleinträge. \Rightarrow _Bg(\alpa)_B 
+    Dreiecksmatrix mit Diagonaleinträgen g(a_k).
+** Hauptsatz (CAYLEY-HAMILTON)
+   :PROPERTIES:
+   :CUSTOM_ID: cayley-hamilton
+   :END:
+
+   Sei \alpha \in \text{End}_{\mathbb{K}}(V) bzw. A \in \mathbb{K}^{n\times n}. Dann ist f_\alpha(\alpha) = 0 bzw. f_A(A) = 0.
+*** TODO Beweis
+    Wegen Isomorphie genügt es A \in \mathbb{K}^{n\times n} zu betrachten.
+    Erinnerung an die Adjunkte: C^# \in \mathbb{K}^{n\times n} einer Matrix C \in \mathbb{K}^{n\times n}.
+    \(C\cdot C^{#} = \det(C)\cdot E\) für \(C^# = (d_{ij})_{i=1,...,n ~~,~~ j=1,...,n} \) wo \(d_{ij} = (-1)^{i+j}\cdot \det(C_{ji})\)
+    und wo C_{ji} aus C entsteht durch Streichen der $j$-ten Zeile und $i$-ten Spalte.
+    Also: \((xE-A)(xE-A)^{#} = f_{A}\cdot E    ~~~~~~~~~~~(\huge{\star})\)
+    Dabei alle Matrizen mit Einträgen aus \(\mathbb{K}[x]\subseteq \mathbb{K}(x)\)
+    Die Einträge von (xE-A)^# sind Polynome aus \mathbb{K}[x] vom Grad \leq n-1
+    _Ansatz_ (xE-A)^# = D_0 + xD_1 + x^2D_2 + ... + x^{n-1}D_{n-1} mit D_k \in \mathbb{K}^{n\times n}
+    für 0\leq k \leq n-1. Sei \(f_A = \sum\limits_{i = 0}^{n-1} k_i\cdot x^i\) mit k_i \in \mathbb{K} , k_n = 1
+    Sei \(f_A = \sum\limits_{i=0}^n k_i x^i\) mit k_i \in \mathbb{K}, k_n = 1
+
+
+    Einsetzen in (\star) liefert \((xE-A)(xE-A)^{#} = (xE-A)(D_0+xD_1+...+x^{n-1}D_{n-1})\)
+* Hauptidealringe
+** Definition
+   Ein nullteilerfreier, kommutativer Ring mit Eins heiße _Integritätsbereich_.
+   Ein _euklidischer Ring_ $R$ sei ein Integritätsbereich, in dem eine Division mit Rest funktioniert, dh es gibt eine Abbildung
+   \(\nu : R\setminus \{0\} \rightarrow \mathbb{N}\) mit folgender Eigenschaft.
+   Seien \(a,b\in R\) mit b\neq 0, so existieren q,r \in R, sodass gilt 
+   \(a = q\cdot b + r\) und \nu(r) < \nu(b) oder r = 0
+** Beispiel
+   1) \mathbb{Z} ist ein euklidischer Ring bezüglich \nu(z) = |z|.
+      Achtet man darauf, dass 0\leq r\leq |b| stets gilt, 
+      so sind r und q eindeutig durch und b bestimmt, denn:
+      
+      \(q_1\cdot b + r_1 = a = q_{2}b+ r_2 \) \Rightarrow \((q_{2}-q_{1})b = r_{1} -r_{2}\)
+      oE: \(r_1 \geq r_2 \Rightarrow 0 \leq r_1 - r_2 < |b| \Rightarrow q_{2} - q_1 = 0, q_{1} = q_{2}, r_{1} = r_{2}\)
+
+   2) \mathbb{K}[x] ist euklidischer Ring bzgl. \nu(f) = gradf
+      Auch hier sind q und r eindeutig durch a und b bestimmt.
+*** Beweis
+**** Existenz?
+    Seien f,g \in \mathbb{K}[x] und g\neq 0. Ist grad f < grad g so f = q\cdot g + r für q = 0, r = f.
+    Sei jetzt m  = grad f \geq n = grad g. Sei a bzw. b der Höchstkoeffizient von f bzw. g
+    Betrachte \(h = f - \frac{a}{b} x^{m-n} g\) . Es ist grad h <m = gradf
+    Induktion nach m liefert \(h = \tilde{q}g+r\) wo \(\tilde(q), r \in \mathbb{K}[x]\) und grad r < grad g
+    \(\Rightarrow f = h +  \frac{a}{b} x^{m-n}g = (\tilde{q}+\frac{a}{b}x^{m-1})g+r \)
+**** Eindeutigkeit
+     Seien q_1g+r_1=f=q_2g+r_2 mit grad r_1 < grad g
+     \((q_2-q_1)g = r_1 - r_2\) 
+     Gradformel \(\Rightarrow (q_2-q_1)g = 0 \Rightarrow \)
